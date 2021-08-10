@@ -90,6 +90,12 @@ export class CanvasComponent implements OnInit {
     this.storage.set(this.projectListName, projectsStr);
   }
 
+  onDeleteFromStorage(i: number): void {
+    this.projectList.splice(i, 1);
+    const projectsStr = JSON.stringify(this.projectList);
+    this.storage.set(this.projectListName, projectsStr);
+  }
+
   getProjects(): void {
     const projects = this.storage.get(this.projectListName);
     if (projects) {

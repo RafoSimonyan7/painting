@@ -29,10 +29,11 @@
             (click)="onSave()">Save</button>
     <input type="text" [(ngModel)]="projectName" />
     <div class="projects-container">
-      <div *ngFor="let project of projectList"
+      <div *ngFor="let project of projectList; let i = index"
            class="project"
            (click)="selectProject(project)">
         <p>Project: {{project.name}}</p>
+        <button (click)='onDeleteFromStorage(i)' class="removeProject">X</button>
       </div>
     </div>
   </div>
