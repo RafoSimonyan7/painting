@@ -104,6 +104,7 @@ export class CanvasComponent implements OnInit {
   }
 
   selectProject(project: IProject): void {
+    this.selectedSize = project.circles.length
     this.circles = project.circles;
   }
 

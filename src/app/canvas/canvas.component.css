@@ -83,6 +83,7 @@ select {
   padding: 2px;
   border: 1px solid #000000;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .circles-container.container-100 {
