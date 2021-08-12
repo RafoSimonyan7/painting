@@ -23,10 +23,9 @@
             (click)="onResetColor()">Reset</button>
     <button class="button-fill-all"
             (click)="onFillCircles()">Fill all</button>
-    <button class="button-delete"
-            (click)="onDeleteCircles()">Delete All</button>
     <button class="button-fill-all"
             (click)="onSave()">Save</button>
+    <button (click)='logout()'>Log Out</button>
     <input type="text" [(ngModel)]="projectName" />
     <div class="projects-container">
       <div *ngFor="let project of projectList; let i = index"

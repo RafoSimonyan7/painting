@@ -1,0 +1,14 @@
+<div class="mainWrapper">
+    <form class="main" (submit)='onSubmit(email.value, password.value)'>
+        <label for="email">Email</label>
+        <input type="text" #email>
+
+        <label for="password">Password</label>
+        <input type="password" #password>
+
+        <div class="btn">
+            <button type="submit">Sign In</button>
+            <button [routerLink]='["/"]'>Cancel</button>
+        </div>
+    </form>
+</div>

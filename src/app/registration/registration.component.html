@@ -1,0 +1,58 @@
+<div class="mainWrapper">
+    <form [formGroup]="userSignUp" class="main" (submit)="onSubmit()">
+        <label for="firstname">First Name</label>
+        <input type="text" formControlName="firstname">
+        <div *ngIf='userSignUp.controls["firstname"].errors && userSignUp.controls["firstname"].touched'>
+            <div *ngIf="userSignUp.controls['firstname'].errors.required" class="form-error">
+                Please enter a first name
+            </div>
+            <div *ngIf="userSignUp.controls['firstname'].errors.minlength" class="form-error">
+                Min length for name is 3
+            </div>
+        </div>
+        <label for="lastname">last Name</label>
+        <input type="text" formControlName="lastname">
+        <div *ngIf='userSignUp.controls["lastname"].errors && userSignUp.controls["lastname"].touched'>
+            <div *ngIf="userSignUp.controls['lastname'].errors.required" class="form-error">
+                Please enter a last name
+            </div>
+            <div *ngIf="userSignUp.controls['lastname'].errors.minlength" class="form-error">
+                Min length for last name is 3
+            </div>
+        </div>
+        <label for="email">Email</label>
+        <input type="text" formControlName="email">
+        <div *ngIf='userSignUp.controls["email"].errors && userSignUp.controls["email"].touched'>
+            <div *ngIf="userSignUp.controls['email'].errors.required" class="form-error">
+                Please enter a email
+            </div>
+        </div>
+        <label for="password">Password</label>
+        <input type="password" formControlName="password">
+        <div *ngIf='userSignUp.controls["password"].errors && userSignUp.controls["password"].touched'>
+            <div *ngIf="userSignUp.controls['password'].errors.required" class="form-error">
+                Please enter a password
+            </div>
+            <div *ngIf="userSignUp.controls['password'].errors.minlength" class="form-error">
+                Min length for password is 3
+            </div>
+            <div *ngIf="userSignUp.controls['password'].errors.maxLength" class="form-error">
+                Max length for password is 20
+            </div>
+        </div>
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" formControlName="confirmPassword">
+        <div *ngIf='userSignUp.controls["confirmPassword"].errors && userSignUp.controls["confirmPassword"].touched'>
+            <div *ngIf="userSignUp.controls['confirmPassword'].errors.required" class="form-error">
+                Please enter a password
+            </div>
+            <div *ngIf='userSignUp.controls["confirmPassword"].errors.mustMatch' class="form-error">
+                Passwords must match
+            </div>
+        </div>
+        <div class="btn">
+            <button [disabled]='userSignUp.invalid'>Sign up</button>
+            <button [routerLink]='["/"]'>Cancel</button>
+        </div>
+    </form>
+</div>
