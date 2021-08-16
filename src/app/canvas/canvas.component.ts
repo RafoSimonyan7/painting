@@ -5,6 +5,7 @@ import {LocalStorageService} from "../services/storage.service";
 import {IProject} from "../interfaces/project.interface";
 import { Circle } from './../models/circle.model';
 import { Router } from '@angular/router';
+import { User } from '../users/user.model';
 
 @Component({
   selector: 'app-canvas',
@@ -23,8 +24,13 @@ export class CanvasComponent implements OnInit {
   ];
   selectedSize: number = this.canvasSizes[0];
   currentColor: string = '#000';
+  users : User[] = []
+  
 
   constructor(private storage: LocalStorageService, private route: Router) { }
+
+  isSignIn: any = this.storage.get('isSignIn')
+
 
   ngOnInit(): void {
     this.getProjects();
@@ -78,7 +84,16 @@ export class CanvasComponent implements OnInit {
     return String(Date.now());
   }
 
+  getUsers(): User[] {
+    const usersInLocal = this.storage.get('user');
+    if (usersInLocal) {
+      return JSON.parse(usersInLocal);
+    }
+    return [];
+  }
+
   onSave(): void {
+  
     if (this.isEmpty(this.circles) || !this.projectName) {
       return;
     }
@@ -88,25 +103,25 @@ export class CanvasComponent implements OnInit {
       circles: this.circles,
     })
     const projectsStr = JSON.stringify(this.projectList);
-    this.storage.set(this.projectListName, projectsStr);
+    this.storage.set(this.isSignIn, projectsStr);
   }
 
   onDeleteFromStorage(i: number): void {
     this.projectList.splice(i, 1);
     const projectsStr = JSON.stringify(this.projectList);
-    this.storage.set(this.projectListName, projectsStr);
+    this.storage.set(this.isSignIn, projectsStr);
   }
 
   getProjects(): void {
-    const projects = this.storage.get(this.projectListName);
+    const projects = this.storage.get(this.isSignIn);
     if (projects) {
       this.projectList = JSON.parse(projects);
     }
   }
 
-  selectProject(project: IProject): void {
-    this.selectedSize = project.circles.length
-    this.circles = project.circles;
+  selectProject(project: any): void {
+      this.selectedSize = project.circles.length;
+      this.circles = project.circles    
   }
 
   logout(): void {

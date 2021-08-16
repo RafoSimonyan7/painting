@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
     if (user) {
       this.login(user);
     }
+    this.users = this.getUsers()
   }
 
   getUsers(): User[] {
@@ -34,13 +35,16 @@ export class LoginComponent implements OnInit {
     this.email = useremail;
     this.password = password;
     const users = this.getUsers();
+    let isValid = false;
     users.map((el) => {
       if (el.email === this.email && el.password === this.password) {
         this.login(this.email);
-      } else {
-        alert('Wrong Email or Password');
+        isValid = true;
       }
     });
+    if(!isValid) {
+      alert('Wrong Email or Password');
+    }
   }
 
   login(email: string) {
